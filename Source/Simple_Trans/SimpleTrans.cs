@@ -15,6 +15,11 @@ public static class SimpleTrans
 	#region Mod Detection Properties
 
 	/// <summary>
+	/// True if RimJobWorld mod is active
+	/// </summary>
+	public static bool RJWActive { get; private set; }
+	
+	/// <summary>
 	/// True if Non-Binary Gender mod is active
 	/// </summary>
 	public static bool NBGenderActive { get; private set; }
@@ -82,11 +87,12 @@ public static class SimpleTrans
 		{
 			HARActive = ModsConfig.IsActive("erdelf.humanoidalienraces") || ModsConfig.IsActive("erdelf.humanoidalienraces.dev");
 			NBGenderActive = ModsConfig.IsActive("divinederivative.nonbinarygender");
+			RJWActive = ModsConfig.IsActive("rim.job.world");
 			IdeologyActive = ModsConfig.IdeologyActive;
 
 			if (debugMode)
 			{
-				Log.Message($"[Simple Trans] Mod detection - HAR: {HARActive}, NBG: {NBGenderActive}, Ideology: {IdeologyActive}");
+				Log.Message($"[Simple Trans] Mod detection - HAR: {HARActive}, NBG: {NBGenderActive}, RJW: {RJWActive}, Ideology: {IdeologyActive}");
 			}
 		}
 		catch (System.Exception ex)
@@ -96,6 +102,7 @@ public static class SimpleTrans
 			HARActive = false;
 			NBGenderActive = false;
 			IdeologyActive = false;
+			RJWActive = false;
 		}
 	}
 

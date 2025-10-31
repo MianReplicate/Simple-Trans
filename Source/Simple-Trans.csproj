@@ -22,7 +22,7 @@
 
   <PropertyGroup>
     <!-- RimWorld installation path - UPDATE THIS to your RimWorld installation path -->
-    <RimWorldPath Condition="'$(RimWorldPath)' == ''">C:\Program Files (x86)\Steam\steamapps\common\RimWorld</RimWorldPath>
+    <RimWorldPath Condition="'$(RimWorldPath)' == ''">D:\SteamLibrary\steamapps\common\RimWorld</RimWorldPath>
     <ModName>Simple Trans</ModName>
   </PropertyGroup>
 
@@ -61,6 +61,10 @@
     <!-- Optional dependency -->
     <Reference Include="NonBinaryGender" Condition="Exists('..\..\Non-Binary Gender\1.6\Assemblies\NonBinaryGender.dll')">
       <HintPath>..\..\Non-Binary Gender\1.6\Assemblies\NonBinaryGender.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RimJobWorld" Condition="Exists('..\..\rjw-master\1.6\Assemblies\RJW.dll')">
+      <HintPath>..\..\rjw-master\1.6\Assemblies\RJW.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

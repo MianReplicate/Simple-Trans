@@ -156,8 +156,9 @@ public static class SimpleTransPregnancyUtility
 			return "CannotNoAbility".Translate();
 		}
 
-		// Check if pawn has carry capability
-		if (!pawn.health.hediffSet.HasHediff(canCarryDef, false))
+		// Check if pawn has carry capability or vagina if RJW is installed
+		if (!pawn.health.hediffSet.HasHediff(canCarryDef, false) 
+		    && (!SimpleTrans.RJWActive || (SimpleTrans.RJWActive && SimpleTransRJWUtility.HasVagina(pawn))))
 		{
 			return "CannotNoAbility".Translate();
 		}
@@ -206,8 +207,9 @@ public static class SimpleTransPregnancyUtility
 			return "CannotNoAbility".Translate();
 		}
 
-		// Check if pawn has sire capability
-		if (!pawn.health.hediffSet.HasHediff(canSireDef, false))
+		// Check if pawn has sire capability or penis if RJW is installed
+		if (!pawn.health.hediffSet.HasHediff(canSireDef, false)
+		    && (!SimpleTrans.RJWActive || (SimpleTrans.RJWActive && SimpleTransRJWUtility.HasPenis(pawn))))
 		{
 			return "CannotNoAbility".Translate();
 		}
@@ -804,13 +806,16 @@ public static class SimpleTransPregnancyUtility
 
 		try
 		{
-			if (!pawn.health.hediffSet.HasHediff(canCarryDef, false))
+			if (!SimpleTrans.RJWActive)
 			{
-				pawn.health.GetOrAddHediff(canCarryDef);
-				if ((removeSire || pawn.gender == Gender.Female) && pawn.health.hediffSet.HasHediff(canSireDef, false))
+				if (!pawn.health.hediffSet.HasHediff(canCarryDef, false))
 				{
-					pawn.health.RemoveHediff(pawn.health.GetOrAddHediff(canSireDef));
-				}
+					pawn.health.GetOrAddHediff(canCarryDef);
+					if ((removeSire || pawn.gender == Gender.Female) && pawn.health.hediffSet.HasHediff(canSireDef, false))
+					{
+						pawn.health.RemoveHediff(pawn.health.GetOrAddHediff(canSireDef));
+					}
+				}	
 			}
 
 			// Optionally clear carry-related sterilization
@@ -859,12 +864,15 @@ public static class SimpleTransPregnancyUtility
 
 		try
 		{
-			if (!pawn.health.hediffSet.HasHediff(canSireDef, false))
+			if (!SimpleTrans.RJWActive)
 			{
-				pawn.health.GetOrAddHediff(canSireDef);
-				if ((removeCarry || pawn.gender == Gender.Male) && pawn.health.hediffSet.HasHediff(canCarryDef, false))
+				if (!pawn.health.hediffSet.HasHediff(canSireDef, false))
 				{
-					pawn.health.RemoveHediff(pawn.health.GetOrAddHediff(canCarryDef));
+					pawn.health.GetOrAddHediff(canSireDef);
+					if ((removeCarry || pawn.gender == Gender.Male) && pawn.health.hediffSet.HasHediff(canCarryDef, false))
+					{
+						pawn.health.RemoveHediff(pawn.health.GetOrAddHediff(canCarryDef));
+					}
 				}
 			}
 

@@ -104,6 +104,8 @@ namespace Simple_Trans.Patches
         [HarmonyPrefix]
         public static bool HumanOvum_CanFertilizeReport_Prefix(Pawn pawn, ref AcceptanceReport __result)
         {
+            if (ModsConfig.IsActive("rim.job.world"))
+                return true; // Let RJW handle this instead
             __result = CanFertilizeReport_SimpleTrans(pawn);
             return false; // Skip original method
         }

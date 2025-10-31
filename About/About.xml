@@ -59,7 +59,6 @@
         <li>divinederivative.nonbinarygender</li>
     </loadAfter>
     <incompatibleWith>
-        <li>rim.job.world</li>
         <li>stormshark.samesexivf</li>
         <li>LovelyDovey.Sex.WithRosaline</li>
         <li>universalpregnancy.1trickPwnyta</li>
